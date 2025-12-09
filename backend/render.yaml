@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: focusdo-api
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /var/data/focusdo.db
+      - key: CORS_ORIGIN
+        sync: false  # Set manually in dashboard
+    disk:
+      name: focusdo-data
+      mountPath: /var/data
+      sizeGB: 1
