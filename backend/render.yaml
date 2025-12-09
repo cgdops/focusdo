@@ -13,11 +13,13 @@ services:
         value: production
       - key: JWT_SECRET
         generateValue: true
-      - key: DATABASE_PATH
-        value: /var/data/focusdo.db
       - key: CORS_ORIGIN
         sync: false  # Set manually in dashboard
-    disk:
-      name: focusdo-data
-      mountPath: /var/data
-      sizeGB: 1
+    # Disk configuration - uncomment after upgrading to paid plan
+    # disk:
+    #   name: focusdo-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # After uncommenting disk, add this env var:
+    # - key: DATABASE_PATH
+    #   value: /var/data/focusdo.db
