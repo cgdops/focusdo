@@ -4,6 +4,7 @@ services:
     runtime: node
     region: oregon
     plan: free
+    rootDir: FocusToDo/backend
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /api/health
