@@ -1,9 +1,16 @@
 const Database = require('better-sqlite3');
 const path = require('path');
+const fs = require('fs');
 
 // Use persistent disk path in production (Render), otherwise local path
 const dbPath = process.env.DATABASE_PATH
   || path.join(__dirname, '../../focusdo.db');
+
+// Ensure the directory exists before creating the database
+const dbDir = path.dirname(dbPath);
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
 
 const db = new Database(dbPath);
 
